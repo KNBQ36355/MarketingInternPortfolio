@@ -2,63 +2,96 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My One Page Website</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 50px 0;
-        }
-        section {
-            padding: 50px;
-            text-align: center;
-        }
-        .file-section {
-            padding: 50px;
-            background-color: #f2f2f2;
-        }
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-        }
-        a {
-            color: #4CAF50;
-            text-decoration: none;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/scrollreveal"></script> <!-- ScrollReveal library -->
 </head>
 <body>
 
+    <!-- Overlay Background -->
+    <div class="background-overlay"></div>
+
+    <!-- Header -->
     <header>
-        <h1>Welcome to My One Page Website</h1>
-        <p>Here you can find everything you need</p>
+        <h1>Welcome to Kim Ngân Portfolio</h1>
     </header>
 
-    <section>
-        <h2>About Me</h2>
-        <p>Welcome to my personal page! You can find my portfolio and work here. Feel free to explore the content below.</p>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+        </ul>
+    </nav>
+
+    <!-- About Section -->
+    <section id="about" class="full-screen-section">
+        <!-- Hình ảnh vetoi.PNG, sẽ chỉ hiện ra khi cuộn đến About Me -->
+        <div class="image-container">
+            <img src="hinh/vetoi.PNG" alt="About Me Image" class="vetoi-image">
+        </div>
+    </section>
+    
+
+    <!-- Skills Section -->
+    <section id="skills" class="full-screen-section">
+        <h2>Skills</h2>
+        <p>SEO, Content Marketing, etc.</p>
     </section>
 
-    <section class="file-section">
-        <h2>My File</h2>
-        <p>Click the link below to view or download the file from Google Drive:</p>
-        <a href="https://drive.google.com/file/d/1mQFWoXxLd_lVm2cTAt62zOT8QWzC69BK/view" target="_blank">Download File</a>
+    <!-- Projects Section -->
+    <section id="projects" class="full-screen-section">
+        <h2>Projects</h2>
+        <p>Details about key projects.</p>
     </section>
 
+    <!-- Footer -->
     <footer>
         <p>© 2024 My One Page Website | All Rights Reserved</p>
     </footer>
 
+    <script>
+        window.addEventListener('scroll', function() {
+            var aboutSection = document.getElementById('about');
+            var skillsSection = document.getElementById('skills');
+            var projectsSection = document.getElementById('projects');
+            var overlay = document.querySelector('.background-overlay');
+            var vetoiImage = document.querySelector('.vetoi-image'); // Hình ảnh vetoi.PNG
+    
+            // Khi cuộn đến About Me
+            if (window.scrollY >= aboutSection.offsetTop && window.scrollY < skillsSection.offsetTop) {
+                overlay.style.backgroundImage = "url('hinh/about.jpg')";
+                overlay.style.opacity = "1"; // Hiện background rõ ràng
+    
+                // Sau 1.5 giây, background mờ đi và hình ảnh vetoi hiện ra
+                setTimeout(function(){
+                    overlay.style.opacity = "0.5"; // Mờ dần background
+                    vetoiImage.classList.add('fade-in'); // Hiện hình vetoi.PNG
+                }, 1500);
+            }
+            // Khi cuộn đến Skills
+            else if (window.scrollY >= skillsSection.offsetTop && window.scrollY < projectsSection.offsetTop) {
+                overlay.style.backgroundImage = "url('hinh/skills.jpg')";
+                overlay.style.opacity = "1"; // Hiện background rõ ràng
+                vetoiImage.classList.remove('fade-in'); // Ẩn hình vetoi.PNG khi cuộn qua phần khác
+            }
+            // Khi cuộn đến Projects
+            else if (window.scrollY >= projectsSection.offsetTop) {
+                overlay.style.backgroundImage = "url('hinh/projects.jpg')";
+                overlay.style.opacity = "1"; // Hiện background rõ ràng
+                vetoiImage.classList.remove('fade-in'); // Ẩn hình vetoi.PNG khi cuộn qua phần khác
+            }
+            // Background mặc định khi load trang
+            else {
+                overlay.style.backgroundImage = "url('hinh/background.jpg')";
+                overlay.style.opacity = "1"; // Hiện background mặc định
+                vetoiImage.classList.remove('fade-in'); // Ẩn hình vetoi.PNG khi load trang
+            }
+        });
+    </script>
+    
+    
 </body>
 </html>
