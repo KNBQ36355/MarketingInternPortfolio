@@ -1,0 +1,89 @@
+/* Smooth scrolling for navigation */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Background overlay to control visibility of background */
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 1; /* Bắt đầu với nền hiển thị đầy đủ */
+    z-index: -1; /* Đặt lớp nền dưới nội dung */
+    transition: opacity 1s ease-in-out; /* Hiệu ứng mờ dần */
+}
+
+/* Full-screen sections */
+.full-screen-section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    z-index: 2;
+}
+
+/* Add a transparent background to the sections so text is readable */
+.full-screen-section h2, .full-screen-section p {
+    background-color: rgba(0, 0, 0, 0.5); /* Nền trong suốt cho text */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Vetoi image - hidden by default */
+.vetoi-image {
+    width: 100%;
+    max-width: 600px;
+    opacity: 0; /* Ẩn hình ảnh ban đầu */
+    transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+    transform: translateY(50px); /* Hiệu ứng trượt từ dưới lên khi hiện */
+}
+
+/* General body styles */
+body {
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-image 1s ease-in-out; /* Chuyển nền mượt */
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Container for the image, using Flexbox to center the content */
+.image-container {
+    display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    height: 100vh; /* Chiều cao của container bằng chiều cao của màn hình */
+    position: relative; /* Giữ vị trí cho việc di chuyển */
+}
+
+/* Vetoi image - hidden by default and centered in the container */
+.vetoi-image {
+    max-height: 100vh; /* Chiều cao của hình ảnh là 50% chiều cao màn hình */
+ 
+    width: auto; /* Tự động điều chỉnh chiều rộng */
+    opacity: 0; /* Hình ảnh ban đầu bị ẩn */
+    transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+    transform: translateY(50px); /* Di chuyển từ dưới lên khi hiện */
+}
+
+/* Khi hình ảnh xuất hiện */
+.fade-in {
+    opacity: 1; /* Hình ảnh xuất hiện rõ */
+    transform: translateY(0); /* Hình ảnh di chuyển về vị trí ban đầu */
+}
